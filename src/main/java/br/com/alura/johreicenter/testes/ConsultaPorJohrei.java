@@ -16,10 +16,13 @@ public class ConsultaPorJohrei {
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		
-		 String jpql = "select p from Pessoa p join p.jc j where j.id = :idJohrei";
+		 String jpql = "select p from Pessoa p join p.jc j where j = :pJohrei";
+		 
+		 	JohreiCenter jc = new JohreiCenter();
+		 	jc.setId(2L);
 
 	        TypedQuery<Pessoa> query = em.createQuery(jpql, Pessoa.class);
-	        query.setParameter("idJohrei", 1L);
+	        query.setParameter("pJohrei", jc);
 
 	        List<Pessoa> resultList = query.getResultList();
 	
